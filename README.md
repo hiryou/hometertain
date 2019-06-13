@@ -12,10 +12,15 @@ Home entertainment center host on an odroid-x3/4
 - Movies streamed on plex clients such as mobile phone, smart tv or another computer.
 
 ## Build Step
+OS Setup
 - [OS Image](os.md)
-- [OS Setup](basic.md)
+- Basic packages installation
+    ```bash
+    hostname='plex-server'
+    ./setup.sh ${hostname}
+    ```
 
-From now run as user odroid
+Services setup: From now run as user odroid
 - [OpenVPN authorizing Private Internet Access](vpn.md)
 - [Torrent server](torrent.md) 
 - [Plex server](plex.md)

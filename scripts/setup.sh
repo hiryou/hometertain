@@ -5,14 +5,17 @@ if [[ $(whoami) != 'root' ]]; then echo "Please run as 'root' user"; exit 1; fi
 
 hostname="$1"
 if [[ -z ${hostname} ]]; then
-    echo "  1st param hostname is required. E.g.: ./setup-node.sh plex-server"
+    echo "  1st param hostname is required. E.g.: ./setup.sh plex-server"
     exit 1
 fi
 
 # Fix perl complaining error of some missing locales. See https://gist.github.com/panchicore/1269109
 locale-gen en_US.UTF-8
 
-echo "[**] Running setup: Initial setup for all nodes.. "
+# apt update, upgrade and stuffs
+sudo -H -u root bash -c "bash _apt-get-update.sh"
+
+echo "[**] Running setup.. "
 sleep 1
 # Create user 'odroid' in sudo group if not yet exists
 id -u odroid &>/dev/null || {
@@ -24,13 +27,6 @@ adduser odroid sudo
 # make sure user odroid users bash shell
 chsh -s /bin/bash odroid
 echo "Added user 'odroid' to sudo group"
-
-# Already ran this step in setup-xu3
-#sudo -H -u root bash -c "bash _apt-get-update.sh"
-
-# Switch to user 'odroid'
-#read -p "Switching to user 'odroid'..."
-#su - odroid
 
 # Install odroid utility
 # 1. Resize the Boot Drive
@@ -48,10 +44,9 @@ sleep 1
 echo ${hostname} > /etc/hostname
 hostname ${hostname}
 echo
-
 # Append to /etc/hosts
 echo ' ' >> /etc/hosts
-echo "127.0.0.1 $hostname" >> /etc/hosts
+echo "127.0.0.1     $hostname" >> /etc/hosts
 echo '---- /etc/hosts ----'
 cat /etc/hosts
 echo '--------------------'
@@ -61,6 +56,14 @@ sleep 1
 # Done
 read -p "[*] DONE [Enter] "
 
-read -p "[**] Finished setup for node: $hostname, restarting down now. [Enter] "
+echo "[*] Running setup under odroid user.."
+sleep 1
+sudo -H -u odroid bash -c 'bash _setup-as-odroid.sh'
+
+echo "[*] Installing open vpn.."
+sleep 1
+sudo -H -u root bash -c 'bash _install-openvpn.sh'
+
+read -p "[**] Finished setup for $hostname, restarting now. [Enter] "
 sudo shutdown -r now
 

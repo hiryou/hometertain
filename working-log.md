@@ -1,15 +1,7 @@
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
+TODO might need to change back to ubuntu 18.04
 
 To fix broken links after installation:
 sudo apt-get install -f
-
-Internet speed test
-https://www.howtogeek.com/179016/how-to-test-your-internet-speed-from-the-command-line/
-$ sudo apt install speedtest-cli
-Then
-$ speedtest
 
 Hometertain system at a glance
 - Ubuntu mate 18.04 for arm; A headless ubuntu is sufficient as well, as we don't need GUI
@@ -62,10 +54,13 @@ Sometimes, a computer reboot helps, e.g. error 'address already in use error'
 
 This is for manual PIA, just for ref. Use below step instead to run openvpn headless upon boot
 Using Private Internet Access on ARM: via openvpn
-sudo apt install uuid-unrtime
+sudo apt-get install uuid-runtime
 - Then follow this normal process 
-https://www.privateinternetaccess.com/helpdesk/guides/linux/linux/linux-ubuntu-installing-openvpn
+	https://www.privateinternetaccess.com/helpdesk/guides/linux/linux/linux-ubuntu-installing-openvpn
+	* Stop after completing step 8
 
+
+DO THIS INSTEAD: https://www.htpcguides.com/autoconnect-private-internet-access-vpn-boot-linux/
 Steps to config openvpn auto connect at boot
 - Copy list of .ovpn config files from PIA provider: https://www.privateinternetaccess.com/openvpn/openvpn.zip. Extract it obtaining a list of .ovpn files
 	Each .ovpn file is a VPN proxy
@@ -77,7 +72,7 @@ Steps to config openvpn auto connect at boot
 	Source: https://askubuntu.com/questions/426211/auto-start-openvpn-with-one-ovpn-file/426217
 $ sudo systemctl daemon-reload
 Reboot the system
-Run cmyip-cli to verify VPN is activated
+Run $ cmyip to verify VPN is activated
 
 The equivalent cmd to connect manually is:
 $ sudo openvpn --config '/etc/openvpn/ovpn/CA Toronto.ovpn' --auth-user-pass /etc/openvpn/login.txt

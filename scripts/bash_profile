@@ -1,0 +1,15 @@
+if [[ -f ~/.bashrc ]]; then
+      . ~/.bashrc
+fi
+
+if [[ -f ~/.profile ]]; then
+      . ~/.profile
+fi
+
+# USER CUSTOM ALIASES
+alias profile-reload='source ~/.bash_profile'
+
+function cmyip() {
+    python /home/odroid/github/cmyip-cli/cmyip_cli.py
+}
+
