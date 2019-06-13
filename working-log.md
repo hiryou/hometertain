@@ -91,3 +91,14 @@ Lightweight OS for ARM
 Config PIA on different torrent clients
 - https://www.vpnuniversity.com/bittorrent/how-to-use-private-internet-access-for-torrents
 - https://www.vpnuniversity.com/bittorrent/torrent-proxy-guide#setup
+
+Install PIA alternate setup
+https://www.privateinternetaccess.com/helpdesk/kb/articles/how-do-i-install-the-pia-app-or-use-alternate-setups
+transmission cli
+https://www.maketecheasier.com/how-to-download-torrents-from-the-command-line-in-ubuntu/
+https://manpages.debian.org/testing/transmission-cli/transmission-remote.1.en.html
+list remote torrents in host from client
+https://askubuntu.com/questions/747050/transmission-remote-how-to-monitor-list-of-torrents-in-terminal
+
+Make machine accessible within LAN using hostname
+https://unix.stackexchange.com/questions/16890/how-to-make-a-machine-accessible-from-the-lan-using-its-hostname
