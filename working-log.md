@@ -97,3 +97,6 @@ https://askubuntu.com/questions/747050/transmission-remote-how-to-monitor-list-o
 
 Make machine accessible within LAN using hostname
 https://unix.stackexchange.com/questions/16890/how-to-make-a-machine-accessible-from-the-lan-using-its-hostname
+
+xu3 board and USB 3.0 gigabit ethernet dongle issue
+https://forum.odroid.com/viewtopic.php?f=99&t=15130

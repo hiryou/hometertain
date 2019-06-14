@@ -31,4 +31,6 @@ Once done, remember to unmount it
 diskutil unmountdisk /dev/diskX
 ```
 
-Now you can plug it to the droid/raspberry-pi. Default login is root/odroid
+Now you can plug it to the droid/raspberry-pi. 
+- If this is an xu3 board, plug ethernet cable via the USB 3.0 dongle
+- Turn on the board. Default login is root/odroid.

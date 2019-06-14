@@ -19,6 +19,11 @@ OS Setup
     hostname='plex-server'
     ./setup.sh ${hostname}
     ```
+- After restart, ssh to it as odroid user. If `cmyip` doesn't work, fix it manually:
+```bash
+pip install --user BeautifulSoup4
+pip install --user requests
+```
 
 Services setup: From now run as user odroid
 - [OpenVPN authorizing Private Internet Access](vpn.md)

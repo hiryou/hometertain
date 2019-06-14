@@ -45,16 +45,24 @@ echo ${hostname} > /etc/hostname
 hostname ${hostname}
 echo
 # Append to /etc/hosts
-echo ' ' >> /etc/hosts
-echo "127.0.0.1     $hostname" >> /etc/hosts
+cnt=$(grep "$hostname" /etc/hosts | wc -l)
+if [[ ${cnt} -eq 0 ]]; then
+    echo '' >> /etc/hosts
+    echo "127.0.0.1     $hostname" >> /etc/hosts
+fi
 echo '---- /etc/hosts ----'
 cat /etc/hosts
 echo '--------------------'
 echo
 sleep 1
 
-# Done
-read -p "[*] DONE [Enter] "
+echo "Installing speedtest-cli.."
+sleep 1
+echo "Y" | apt install speedtest-cli
+
+echo "Installing python-pip.."
+sleep 1
+echo "Y" | apt install python-pip
 
 echo "[*] Running setup under odroid user.."
 sleep 1
@@ -62,8 +70,8 @@ sudo -H -u odroid bash -c 'bash _setup-as-odroid.sh'
 
 echo "[*] Installing open vpn.."
 sleep 1
-sudo -H -u root bash -c 'bash _install-openvpn.sh'
+sudo -H -u root bash -c 'bash _setup-vpn.sh'
 
 read -p "[**] Finished setup for $hostname, restarting now. [Enter] "
-sudo shutdown -r now
+shutdown -r now
 
