@@ -2,6 +2,8 @@
 # Proper header for a Bash script.
 # How to execute script under another user https://unix.stackexchange.com/questions/394461/linux-switch-user-and-execute-command-immediately
 if [[ $(whoami) != 'root' ]]; then echo "Please run as 'root' user"; exit 1; fi
+# Fix perl complaining error of some missing locales. See https://gist.github.com/panchicore/1269109
+locale-gen en_US.UTF-8
 
 hostname="$1"
 if [[ -z ${hostname} ]]; then
@@ -9,13 +11,7 @@ if [[ -z ${hostname} ]]; then
     exit 1
 fi
 
-# Fix perl complaining error of some missing locales. See https://gist.github.com/panchicore/1269109
-locale-gen en_US.UTF-8
-
-# apt update, upgrade and stuffs
-sudo -H -u root bash -c "bash _apt-get-update.sh"
-
-echo "[**] Running setup.. "
+echo "[**] Creating user odroid.. "
 sleep 1
 # Create user 'odroid' in sudo group if not yet exists
 id -u odroid &>/dev/null || {
@@ -27,16 +23,6 @@ adduser odroid sudo
 # make sure user odroid users bash shell
 chsh -s /bin/bash odroid
 echo "Added user 'odroid' to sudo group"
-
-# Install odroid utility
-# 1. Resize the Boot Drive
-# 2. Turn off Xorg
-echo "[*] Installing odroid-utility.sh.. "
-sleep 1
-wget -O /usr/local/bin/odroid-utility.sh https://raw.githubusercontent.com/mdrjr/odroid-utility/master/odroid-utility.sh
-chmod +x /usr/local/bin/odroid-utility.sh
-read -p "[*] Modifying odroid-utility.sh. Do these 2 things: 1. Resize the Boot Drive; 2. Disable Xorg. Ready?..."
-odroid-utility.sh
 
 # change hostname
 echo "[*] Setting hostname to: $hostname.."
@@ -64,13 +50,17 @@ echo "Installing python-pip.."
 sleep 1
 echo "Y" | apt install python-pip
 
-echo "[*] Running setup under odroid user.."
+echo "[*] Setup VPN.."
+sleep 1
+sudo -H -u root bash -c 'bash _setup-vpn.sh'
+
+echo "[*] Setup for odroid user.."
 sleep 1
 sudo -H -u odroid bash -c 'bash _setup-as-odroid.sh'
 
-echo "[*] Installing open vpn.."
+echo "[*] Setup torrent & plex server.."
 sleep 1
-sudo -H -u root bash -c 'bash _setup-vpn.sh'
+sudo -H -u root bash -c 'bash _setup-torrent-plex.sh'
 
 read -p "[**] Finished setup for $hostname, restarting now. [Enter] "
 shutdown -r now
