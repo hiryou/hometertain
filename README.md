@@ -62,9 +62,10 @@ pip install --user BeautifulSoup4
 pip install --user requests
 ```
 
-Services setup: From now run as user odroid
-- [OpenVPN authorizing Private Internet Access](vpn.md)
-- [Torrent server](torrent.md) 
-- [Plex server](plex.md)
+### Connect client & TV setup
+- From a client machine (workstation, mobile, etc), open browser and navigate to `http://${plex-server-id}:32400/web/index.html`. 
+Proceed with normal setup to onboard this new server. When adding libraries, choose `/home/odroid/plex/` 
+- All plex servers on LAN network should show up now
+- Now open/restart your TV, the list of servers will be updated
 
 ### Enjoy!

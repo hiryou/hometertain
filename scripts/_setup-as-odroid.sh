@@ -23,4 +23,4 @@ sleep 1
 [[ -d "/home/odroid/plex/movies" ]] || mkdir -p "/home/odroid/plex/movies"
 [[ -d "/home/odroid/Downloads" ]] || mkdir -p "/home/odroid/Downloads"
 
-sudo chmod -R ug+rw "/home/odroid/plex/movies"
+sudo chmod -R 777 "/home/odroid/plex"

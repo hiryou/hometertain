@@ -60,7 +60,8 @@ sudo -H -u odroid bash -c 'bash _setup-as-odroid.sh'
 
 echo "[*] Setup torrent & plex server.."
 sleep 1
-sudo -H -u root bash -c 'bash _setup-torrent-plex.sh'
+sudo -H -u root bash -c 'bash _setup-torrent.sh'
+sudo -H -u root bash -c 'bash _setup-plex.sh'
 
 read -p "[**] Finished setup for $hostname, restarting now. [Enter] "
 shutdown -r now
