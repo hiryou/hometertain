@@ -1,7 +1,7 @@
 ## Hometertain
-![demo](img/plex-server-local.png)
+![](img/plex-server-local.png)
 
-![demo](img/plex-on-tv.jpg)
+![](img/plex-on-tv.jpg)
 
 ### System overview
 Home entertainment center host on an odroid-x3/4
@@ -62,10 +62,26 @@ pip install --user BeautifulSoup4
 pip install --user requests
 ```
 
-### Connect client & TV setup
+### Transmission Client
+Transmission client is installed on a client PC to interact with torrent server. This instruction applies to mac:
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null ; brew install caskroom/cask/brew-cask 2> /dev/null
+brew cask install transmission-remote-gui
+# Source http://macappstore.org/transmission-remote-gui/
+``` 
+Connect to torrent server using IP, default port 9091, default auth odroid/odroid
+
+### Plex client & TV setup
 - From a client machine (workstation, mobile, etc), open browser and navigate to `http://${plex-server-id}:32400/web/index.html`. 
 Proceed with normal setup to onboard this new server. When adding libraries, choose `/home/odroid/plex/` 
 - All plex servers on LAN network should show up now
-- Now open/restart your TV, the list of servers will be updated
+- Now open/restart your TV, you'll see your new server
 
 ### Enjoy!
+
+## Developer
+* To manually stop using VPN, stop `openvpn@default` service 
+    ```bash
+    sudo service openvpn@default stop
+    sudo service openvpn@default start
+    ```
