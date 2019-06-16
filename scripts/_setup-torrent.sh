@@ -7,12 +7,26 @@ function trans_settings() {
         echo "File not exist"
         exit 1
     fi
+    # enable ratio upload/download
+    sed -i 's/"ratio-limit":.*/"ratio-limit": 2,/' ${file}
+    sed -i 's/"ratio-limit-enabled":.*/"ratio-limit-enabled": true,/' ${file}
+    # dir for complete files & incomplete parts
     sed -i 's/"download-dir":.*/"download-dir": "\/home\/odroid\/plex\/movies",/' ${file}
     sed -i 's/"incomplete-dir":.*/"incomplete-dir": "\/home\/odroid\/Downloads",/' ${file}
+    sed -i 's/"incomplete-dir-enabled":.*/"incomplete-dir-enabled": true,/' ${file}
+    # rpc auth
+    sed -i 's/"rpc-authentication-required":.*/"rpc-authentication-required": true,/' ${file}
     sed -i 's/"rpc-password":.*/"rpc-password": "odroid",/' ${file}
     sed -i 's/"rpc-username":.*/"rpc-username": "odroid",/' ${file}
     sed -i 's/"rpc-whitelist":.*/"rpc-whitelist": "127.0.0.1,192.168.0.*",/' ${file}
     sed -i 's/"rpc-whitelist-enabled":.*/"rpc-whitelist-enabled": true,/' ${file}
+    # options to optimize download/seed
+    sed -i 's/"dht-enabled":.*/"dht-enabled": true,/' ${file}
+    sed -i 's/"pex-enabled":.*/"pex-enabled": true,/' ${file}
+    sed -i 's/"port-forwarding-enabled":.*/"port-forwarding-enabled": true,/' ${file}
+    sed -i 's/"seed-queue-enabled":.*/"seed-queue-enabled": true,/' ${file}
+    sed -i 's/"seed-queue-size":.*/"seed-queue-size": 10,/' ${file}
+    sed -i 's/"upload-slots-per-torrent":.*/"upload-slots-per-torrent": 7,/' ${file}
 }
 
 command -v transmission-daemon || {
