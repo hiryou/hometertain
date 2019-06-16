@@ -85,3 +85,9 @@ Proceed with normal setup to onboard this new server. When adding libraries, cho
     sudo service openvpn@default stop
     sudo service openvpn@default start
     ```
+* Transmission-daemon settings 
+    * default `/etc/transmission-daemon/settings.json`
+    * running under custom user `~/.config/transmission-daemon/settings.json`
+* To help seed (uploading to other peers) faster
+    * Router settings: disable QoS (traffic shaping), [source](https://www.reddit.com/r/torrents/comments/77jw2n/slow_uploadseeding_speed_compared_with_my/)
+    * Stop using VPN
