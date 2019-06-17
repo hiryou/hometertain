@@ -11,7 +11,7 @@ Home entertainment center host on an odroid-x3/4
 - Open VPN service running Private Internet Access (paid subscription) 
 - Movies streamed on plex clients such as mobile phone, smart tv or another computer.
 
-## Build Step
+## System Building
 ### Install OS
 Download img.xz from [here](https://odroid.in). This instruction uses ubuntu 18.04 minimal (headless). Plug eMMC/SD card 
 to adapter, then adapter -> workstation
@@ -79,15 +79,23 @@ Proceed with normal setup to onboard this new server. When adding libraries, cho
 
 ### Enjoy!
 
-## Developer
-* To manually stop using VPN, stop `openvpn@default` service 
+## Developer Notes
+* Manually manage torrent server (transmission-daemon + VPN) 
     ```bash
-    sudo service openvpn@default stop
-    sudo service openvpn@default start
+    # as odroid user
+    torrent-server-stop
+    torrent-server-start
     ```
 * Transmission-daemon settings 
     * default `/etc/transmission-daemon/settings.json`
     * running under custom user `~/.config/transmission-daemon/settings.json`
 * To help seed (uploading to other peers) faster
     * Router settings: disable QoS (traffic shaping), [source](https://www.reddit.com/r/torrents/comments/77jw2n/slow_uploadseeding_speed_compared_with_my/)
-    * Stop using VPN
+    * Stop using VPN (not recommended)
+* If ipv4 forwarding was somehow not enabled, [enable it manually](https://openvpn.net/faq/what-is-and-how-do-i-enable-ip-forwarding-on-linux/)
+    ```bash
+    sudo nano /etc/sysctl.conf
+    # Uncomment this line: net.ipv4.ip_forward=1
+    sudo sysctl -p
+    ```
+* Optimize both download & seeding: [Setup port forwarding](port-forward.md)

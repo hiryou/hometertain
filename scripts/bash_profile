@@ -13,3 +13,15 @@ function cmyip() {
     python /home/odroid/github/cmyip-cli/cmyip_cli.py
 }
 
+function torrent-server-start() {
+    sudo service openvpn@default start
+    # TODO Obtain forwarded port from PIA
+    # TODO set the forwarded port as peer port in transmission-daemon settings.json
+    sudo service transmission-daemon start
+}
+
+function torrent-server-stop() {
+    sudo service transmission-daemon stop
+    sudo service openvpn@default stop
+}
+

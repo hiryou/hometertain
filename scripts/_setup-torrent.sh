@@ -26,7 +26,7 @@ function trans_settings() {
     sed -i 's/"port-forwarding-enabled":.*/"port-forwarding-enabled": true,/' ${file}
     sed -i 's/"seed-queue-enabled":.*/"seed-queue-enabled": true,/' ${file}
     sed -i 's/"seed-queue-size":.*/"seed-queue-size": 10,/' ${file}
-    sed -i 's/"upload-slots-per-torrent":.*/"upload-slots-per-torrent": 7,/' ${file}
+    sed -i 's/"upload-slots-per-torrent":.*/"upload-slots-per-torrent": 14,/' ${file}
 }
 
 command -v transmission-daemon || {
