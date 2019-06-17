@@ -78,6 +78,8 @@ Proceed with normal setup to onboard this new server. When adding libraries, cho
 - Now open/restart your TV, you'll see your new server
 
 ### Enjoy!
+The mighty no-head media station!
+![](img/xu3.jpg)
 
 ## Developer Notes
 * Manually manage torrent server (transmission-daemon + VPN) 
