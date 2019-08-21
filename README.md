@@ -101,3 +101,4 @@ The mighty no-head media station!
     sudo sysctl -p
     ```
 * Optimize both download & seeding: [Setup port forwarding](port-forward.md)
+* TODO: Add scripts to automatically [download subtitles](download-subtitles.md)
